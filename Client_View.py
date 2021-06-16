@@ -1,3 +1,7 @@
+'''
+Develop by:
+Luis Eduardo and Wallison
+'''
 from tkinter.constants import END
 from client import register_Client
 import tkinter as tk
@@ -39,12 +43,12 @@ class register_Client_View:
         self.btnExcluir = tk.Button(screen, text='Excluir', width = 10, command=self._on_delete_clicked)   
         
         self.clientList = ttk.Treeview(screen, columns=(1,2,3,4,5,6,7), show='headings')
-        self.verscrlbar_2 = ttk.Scrollbar(screen,  orient="horizontal", command=self.clientList.yview)
-        self.verscrlbar = ttk.Scrollbar(screen, orient="vertical", command=self.clientList.yview)  
+        self.verscrlbar_2 = ttk.Scrollbar(screen,  orient="horizontal", command=self.clientList.xview)
+        self.verscrlbar = ttk.Scrollbar(screen, orient="vertical", command=self.clientList.xview)  
         self.verscrlbar_2.pack(side = 'right', fill='x')
         self.verscrlbar.pack(side ='right', fill ='y')
         self.clientList.configure(yscrollcommand=self.verscrlbar.set)
-        self.clientList.configure(yscrollcommand=self.verscrlbar_2.set)
+        self.clientList.configure(xscrollcommand=self.verscrlbar_2.set)
 
         self.clientList.heading(1, text="ID")
         self.clientList.heading(2, text="First Name") 
@@ -170,7 +174,7 @@ class register_Client_View:
     def _on_update_clicked(self):        
         linhaSelecionada = self.clientList.selection()
 
-        if(len(linhaSelecionada) != 0):
+        if len(linhaSelecionada) != 0:
             idCliente = self.clientList.item(linhaSelecionada[0])['values'][0]
             lblNameClient = self.NameClientEdit.get()
             lblLastName = self.LastNameClientEdit.get()
@@ -179,7 +183,7 @@ class register_Client_View:
             lblEmailClient = self.EmailClientEdit.get()
             lblAdressClient = self.AdressClientEdit.get()
             
-
+         
             if self.client_CRUD.update(idCliente,lblNameClient,lblLastName,lblCPFClient,lblPhoneClient,lblEmailClient,lblAdressClient):
 
                 self.clientList.item(self.clientList.focus(), values=(str(idCliente),lblNameClient,lblLastName,lblCPFClient,lblPhoneClient,lblEmailClient,lblAdressClient))

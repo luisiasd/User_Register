@@ -89,10 +89,10 @@ class register_Client:
 
             return True
         except sqlite3.OperationalError as e:
-            print("Erro na atualização de departamentos: {}".format(e))
+            print("Erro na Atualização de Clientes: {}".format(e))
             return False
         except sqlite3.IntegrityError as e:
-            print("Erro de inegridade: {}".format(e))
+            print("Erro de Integridade: {}".format(e))
             return False
 
 
